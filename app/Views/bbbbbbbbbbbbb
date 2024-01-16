@@ -1,0 +1,28 @@
+
+<?php foreach($comm->getResult() as $row1) { ?>
+<div class="bubbleWrapper">
+      <div class="inlineContainer">
+        <img class="inlineIcon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+        <div class="otherBubble other">
+        <?= $row1->comments; ?>
+        </div>
+        <?php $new1 = date("d-m-Y", strtotime($row1->date));   ?>
+      </div><span class="other">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $new1; ?>	|	By <?php echo $row1->user_name; ?></span>
+    </div>
+
+<?php foreach($rply->getResult() as $row2) { 
+  if($row1->comment_id == $row2->comment_id) {
+?>
+    <div class="bubbleWrapper">
+      <div class="inlineContainer own">
+        <img class="inlineIcon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+        <div class="ownBubble own">
+        <?= $row2->reply; ?>
+        </div>
+        <?php $new2 = date("d-m-Y", strtotime($row1->date));   ?>
+      </div><span class="own"><?php echo $new2; ?>	|	Reply by admin &nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
+<?php }
+  } 
+}
+?>
